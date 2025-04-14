@@ -1,10 +1,18 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
+import { updateElectronApp, UpdateSourceType } from 'update-electron-app';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+
+updateElectronApp({
+  updateSource: {
+    type: UpdateSourceType.ElectronPublicUpdateService,
+    repo: 'DDA1O1/electron-webpack'
+  }
+}); // additional configuration options available
 
 const createWindow = () => {
   // Create the browser window.
